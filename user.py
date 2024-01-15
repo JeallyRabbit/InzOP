@@ -7,7 +7,7 @@ def get_trainings():
     file=open("accounts.pydb","r")
     for line in file:
         r=line.replace("\n","").split("~")
-        users.append(user(r[0],r[1],r[2],r[3],r[4],r[5],r[6],r[7],r[8]))
+        users.append(user(r[0], r[1], r[2], r[3], r[4], r[5], r[6], r[7]))
     file.close()
 
     return users
@@ -97,8 +97,9 @@ def add_user():
     labels.append(tk.Entry(root, width=150))
     labels[12].grid(row=5, column=1)
 
-    labels.append(tk.Entry(root, width=150))
+    labels.append(ttk.Combobox(root))
     labels[13].grid(row=6, column=1)
+    labels[13]['values'] = DIMENSIONS.get_current_dimensions_by_type("Typ uzytkownika")
 
 
 

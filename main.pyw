@@ -10,6 +10,7 @@ root=0
 
 def main_menu(usr):
 
+
     labels=[]
     root=tk.Tk()
 
@@ -44,21 +45,38 @@ def main_menu(usr):
     labels[4].place(x=515,y=300,height=300)
 
     #Przyciski
-    labels.append(tk.Button(root,text="Dodaj szkolenie",command=TRAINING.add_training))
-    labels[5].place(x=2,y=620,width=200,height=100)
-
-    labels.append(tk.Button(root,text="Dodaj użytkownika",command=USER.add_user))
-    labels[6].place(x=202,y=620,width=200,height=100)
+    if(usr.type=='Uczestnik' or usr.type=='Przedstawiciel' or usr.type=='Prowadzacy'):
+        labels.append(tk.Button(root, text=""))
+        labels[5].place(x=2, y=620, width=200, height=100)
+        labels.append(tk.Button(root,text=""))
+        labels[6].place(x=202,y=620,width=200,height=100)
+    else:
+        labels.append(tk.Button(root, text="Dodaj szkolenie", command=TRAINING.add_training))
+        labels[5].place(x=2, y=620, width=200, height=100)
+        labels.append(tk.Button(root, text="Dodaj użytkownika", command=USER.add_user))
+        labels[6].place(x=202, y=620, width=200, height=100)
 
     labels.append(tk.Button(root,text="Zobacz listę uczestników"))
     labels[7].place(x=402,y=620,width=200,height=100)
 
-    labels.append(tk.Button(root,text="Edytuj wymiary",command=DIMENSIONS.add_dimension))
-    labels[8].place(x=602,y=620,width=200,height=100)
+    if(usr.type=='admin'):
+        labels.append(tk.Button(root, text="Edytuj wymiary", command=DIMENSIONS.add_dimension))
+        labels[8].place(x=602, y=620, width=200, height=100)
+    else:
+        labels.append(tk.Button(root, text=""))
+        labels[8].place(x=602, y=620, width=200, height=100)
 
-    labels.append(tk.Button(root,text="Edytuj szkolenie"))
-    labels[9].place(x=802,y=620,width=200,height=100)
+    if(usr.type=='admin' or usr.type=='Prowadzacy'):
+        labels.append(tk.Button(root, text="Edytuj szkolenie"))
+        labels[9].place(x=802, y=620, width=200, height=100)
+    else:
+        labels.append(tk.Button(root, text=""))
+        labels[9].place(x=802, y=620, width=200, height=100)
 
+
+    if(usr.type=='Uczestnik'):
+        labels[5].text="asd"
+        print(usr.type)
 
     root.mainloop()
 
