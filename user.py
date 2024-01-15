@@ -23,16 +23,18 @@ def add_user():
         id=int(current_db[-1][0])+1
         current_db.clear()
 
-        login = labels[0].get()
-        name = labels[1].get()
-        surname = labels[2].get()
-        mail = labels[3].get()
-        number = labels[4].get()
-        password = labels[5].get()
-        type = labels[6].get()
-        _for = labels[7].get()
+        login = labels[7].get()
+        name = labels[8].get()
+        surname = labels[9].get()
+        mail = labels[10].get()
+        number = labels[11].get()
+        password = labels[12].get()
+        type = labels[13].get()
+        #_for = labels[14].get()
 
-        line = str(id)+"~"+login+"~"+name+"~"+surname+"~"+mail+"~"+number+"~"+password+"~"+type+"~"+_for+"\n"
+        #line = str(id)+"~"+login+"~"+name+"~"+surname+"~"+mail+"~"+number+"~"+password+"~"+type+"~"+_for+"\n"
+        line = (str(id) + "~" + login + "~" + name + "~" + surname + "~" +
+                mail + "~" + number + "~" + password + "~" + type+ "~" + "\n")
         #(self,id,login,name,surname,mail,number,password,type):
         #current_db.append(training(name,descripton,agenda,data,coach,products,type,_for))
 
