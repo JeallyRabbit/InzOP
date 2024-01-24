@@ -1,10 +1,11 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, messagebox
 from global_functions import on_click
 import user as USER
 import training as TRAINING
 import dimensions as DIMENSIONS
-
+import edit_training as EDIT
+import participant as PART
 #globalne
 root=0
 
@@ -35,7 +36,7 @@ def main_menu(usr):
     labels[1].place(x=200,y=250)
 
     labels.append(tk.Label(root,text="Agenda"))
-    labels[2].place(x=750,y=250)
+    labels[2].place(x=750,y=250) 
 
     #Opis i agenda
     labels.append(tk.Entry(root,state='disabled',width=80))
@@ -55,10 +56,13 @@ def main_menu(usr):
         labels[5].place(x=2, y=620, width=200, height=100)
         labels.append(tk.Button(root, text="Dodaj użytkownika", command=USER.add_user))
         labels[6].place(x=202, y=620, width=200, height=100)
-
-    labels.append(tk.Button(root,text="Zobacz listę uczestników"))
-    labels[7].place(x=402,y=620,width=200,height=100)
-
+    if(usr.type == 'Prowadzacy' or usr.type=='admin'):
+        labels.append(tk.Button(root,text="Zobacz listę uczestników", command=PART.add_participant_to_training))
+        labels[7].place(x=402,y=620,width=200,height=100)
+    else:
+        labels.append(tk.Button(root, text=""))
+        labels[7].place(x=402, y=620, width=200, height=100)
+  
     if(usr.type=='admin'):
         labels.append(tk.Button(root, text="Edytuj wymiary", command=DIMENSIONS.add_dimension))
         labels[8].place(x=602, y=620, width=200, height=100)
@@ -67,12 +71,13 @@ def main_menu(usr):
         labels[8].place(x=602, y=620, width=200, height=100)
 
     if(usr.type=='admin' or usr.type=='Prowadzacy'):
-        labels.append(tk.Button(root, text="Edytuj szkolenie"))
+        labels.append(tk.Button(root, text="Edytuj szkolenie", command=EDIT.edit_training))
         labels[9].place(x=802, y=620, width=200, height=100)
     else:
         labels.append(tk.Button(root, text=""))
         labels[9].place(x=802, y=620, width=200, height=100)
-
+    
+    
 
     if(usr.type=='Uczestnik'):
         labels[5].text="asd"
@@ -144,9 +149,8 @@ def login():
     labels.append(tk.Button(login_root,width=30,height=3, text="Przejrzyj dostępne szkolenia"))
     labels[5].grid(row=3,column=1)
 
-
+   
     login_root.mainloop()
-
 
 def main():
 
