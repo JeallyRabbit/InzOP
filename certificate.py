@@ -1,6 +1,7 @@
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from datetime import datetime
+import os
 
 def generate_certificate( training_name):
     current_date = datetime.now().strftime("%d-%m-%Y")
@@ -9,7 +10,10 @@ def generate_certificate( training_name):
     name = training_name
     filename = f"certyfikat {name}.pdf"
     # Create a PDF document
-    pdf_canvas = canvas.Canvas(filename, pagesize=letter)
+    current_directory = os.getcwd()
+    certificates_directory = os.path.join(current_directory, "certificates")
+    os.makedirs(certificates_directory, exist_ok=True)
+    pdf_canvas = canvas.Canvas(os.path.join("certificates", filename), pagesize=letter)
 
     # Set font and size
     pdf_canvas.setFont("Helvetica", 12)

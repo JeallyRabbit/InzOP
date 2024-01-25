@@ -56,9 +56,13 @@ def main_menu(usr):
         labels[5].place(x=2, y=620, width=200, height=100)
         labels.append(tk.Button(root, text="Dodaj użytkownika", command=USER.add_user))
         labels[6].place(x=202, y=620, width=200, height=100)
+
     if(usr.type == 'Prowadzacy' or usr.type=='admin'):
         labels.append(tk.Button(root,text="Zobacz listę uczestników", command=PART.add_participant_to_training))
         labels[7].place(x=402,y=620,width=200,height=100)
+    elif usr.type == 'Uczestnik':
+        labels.append(tk.Button(root, text="Twoje szkolenia", command=EDIT.user_panel))
+        labels[7].place(x=402, y=620, width=200, height=100)
     else:
         labels.append(tk.Button(root, text=""))
         labels[7].place(x=402, y=620, width=200, height=100)
@@ -76,12 +80,7 @@ def main_menu(usr):
     else:
         labels.append(tk.Button(root, text=""))
         labels[9].place(x=802, y=620, width=200, height=100)
-    
-    
 
-    if(usr.type=='Uczestnik'):
-        labels[5].text="asd"
-        print(usr.type)
 
     root.mainloop()
 
